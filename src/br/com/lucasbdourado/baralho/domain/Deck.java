@@ -5,9 +5,13 @@ package br.com.lucasbdourado.baralho.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Deck {
     private List<Card> cards = new ArrayList<>();
+
+    private Integer index = 0;
 
     public Deck(){
 
@@ -87,5 +91,13 @@ public class Deck {
             cards.set(i, newCard);
             cards.set(random, oldCard);
         }
+    }
+
+    public Card getCard() {
+        Card card = cards.get(index);
+
+        index++;
+
+        return card;
     }
 }

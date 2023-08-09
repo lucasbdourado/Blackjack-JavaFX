@@ -1,3 +1,6 @@
+/*
+    @Author: Lucas Barbosa Dourado - lucasbdourado
+*/
 package br.com.lucasbdourado.baralho.domain;
 
 import java.util.ArrayList;
