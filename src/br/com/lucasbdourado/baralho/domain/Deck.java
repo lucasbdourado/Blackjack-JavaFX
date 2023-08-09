@@ -6,10 +6,10 @@ package br.com.lucasbdourado.baralho.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Baralho {
+public class Deck {
     private List<Card> cards = new ArrayList<>();
 
-    public Baralho(){
+    public Deck(){
 
         // Paus
         cards.add(new Card("2", "♣", 2));
