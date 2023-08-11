@@ -1,14 +1,9 @@
 package br.com.lucasbdourado.baralho;
 
-import br.com.lucasbdourado.baralho.domain.Dealer;
-import br.com.lucasbdourado.baralho.domain.Deck;
-import br.com.lucasbdourado.baralho.domain.Card;
-import br.com.lucasbdourado.baralho.domain.Jogador;
+import br.com.lucasbdourado.baralho.domain.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class Application {
     public static void main(String[] args) {
@@ -16,10 +11,11 @@ public class Application {
         List<Jogador> jogadores = new ArrayList<>();
 
         Deck deck = new Deck();
+        Rules rules = new Rules();
 
         deck.shuffle();
 
-        Dealer dealer = new Dealer(deck);
+        Dealer dealer = new Dealer("Dealer", deck);
 
         jogadores.add(new Jogador("Lucas"));
         jogadores.add(new Jogador("Dourado"));
@@ -28,6 +24,7 @@ public class Application {
             for (Jogador jogador : jogadores) {
                 dealer.giveCard(jogador);
             }
+            dealer.addCard();
         }
 
         for (Jogador jogador : jogadores) {
@@ -35,7 +32,10 @@ public class Application {
             for (Card card: jogador.getCards()) {
                 System.out.print(card.getNumber() + card.getSuit() + " ");
             }
+            rules.checkCards(jogador);
             System.out.println("\n---------------------------");
+
         }
+        System.out.print(dealer.getName() + ": " + dealer.getCards().get(0).getNumber() + dealer.getCards().get(0).getSuit() + " ");
     }
 }
