@@ -8,14 +8,37 @@ public class Rules {
 
     public Rules(){}
 
-    public int checkCards(Jogador jogador){
+    public boolean checkCards(Jogador jogador){
         int result = 0;
+        boolean canPlay = true;
 
         for (Card card : jogador.getCards()) {
             result = result + card.getValue();
         }
 
-        return result;
+        System.out.print(result);
+
+        int winner = checkWinCondition(result);
+
+        if(winner > 0){
+            canPlay = false;
+        }
+
+        return canPlay;
+    }
+
+    public int checkWinCondition(int result){
+        int winner = 0;
+
+        if(result == 21){
+            winner = 1;
+            System.out.println("\nDealer: Blackjack!!!");
+        } else if (result > 21) {
+            winner = 2;
+            System.out.println("\nDealer: Você estourou!");
+        }
+
+        return winner;
     }
 
 }
