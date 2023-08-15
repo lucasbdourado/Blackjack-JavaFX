@@ -1,6 +1,7 @@
 package br.com.lucasbdourado.baralho.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Jogador {
@@ -22,5 +23,8 @@ public class Jogador {
 
     public void addCard(Card card){
         cards.add(card);
+    }
+    public void removeAllCards(){
+        getCards().removeAll(cards);
     }
 }

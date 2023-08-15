@@ -8,8 +8,67 @@ import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
+        mainMenu();
+    }
+    public static void mainMenu(){
+        boolean makedChoice = false;
 
-        List<Jogador> jogadores = new ArrayList<>();
+        while (!makedChoice) {
+            System.out.println("---------------------------");
+            System.out.println("1 - Inciar jogo");
+
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                makedChoice = true;
+                playerSelection();
+            } else {
+                System.out.println("Opção errada!");
+            }
+        }
+    }
+
+    public static void playerSelection(){
+        System.out.println("---------------------------");
+        System.out.println("Informe quantos jogadores irão jogar a partida de Blackjack");
+
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+
+        if (choice <= 4) {
+            List<Jogador> jogadores = new ArrayList<>();
+
+            for(int i=1; i<=choice; i++){
+                Scanner scanner1 = new Scanner(System.in);
+
+                System.out.println("Informe o nome do jogador " + i);
+
+                String name = scanner1.nextLine();
+
+
+                if(name.length() > 2){
+                    jogadores.add(new Jogador(name));
+                }else{
+                    System.out.println("Digite o nome corretamente");
+                    i--;
+                }
+            }
+
+            if (jogadores.size() == choice){
+                startGame(jogadores);
+            }
+        } else {
+            System.out.println("Não é possivel iniciar a partida com essa quantidade de jogadores!");
+            playerSelection();
+        }
+    }
+
+    public static void startGame(List<Jogador> jogadores){
+
+        System.out.println("\n---------------------------");
+        System.out.println("-------- BlackJack --------");
+        System.out.println("---------------------------");
 
         Deck deck = new Deck();
         Rules rules = new Rules();
@@ -17,9 +76,6 @@ public class Application {
         deck.shuffle();
 
         Dealer dealer = new Dealer("Dealer", deck);
-
-        jogadores.add(new Jogador("Lucas"));
-        jogadores.add(new Jogador("Dourado"));
 
         for (int i=0; i<2; i++) {
             for (Jogador jogador : jogadores) {
