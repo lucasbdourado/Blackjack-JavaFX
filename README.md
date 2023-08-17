@@ -18,5 +18,6 @@ Game.java: Gerencia os dados do jogo, incluindo a lista de jogadores, desenvolvi
 - Desenvolver uma interface gráfica para tornar a experiência mais envolvente com JavaFX.
 - Funcionalidades adicionais, como divisão de cartas, apostas, contagem de cartas, etc.
 - Melhorar a estratégia do dealer aumentando condições e tomadas de decições baseado em probabilidades.
+- Criar e hospedar preview do projeto.
 
 Aviso: Este é um projeto de aprendizado e entretenimento, não é destinado ao uso comercial ou de cassino real.
