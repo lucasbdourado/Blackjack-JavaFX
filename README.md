@@ -7,12 +7,12 @@ Jogo de baralho desenvolvido em Java. Blackjack é um simples jogo de cartas ond
 ## Estrutura do Código
 O código-fonte do jogo está organizado da seguinte forma:
 
-**Application.java:** Contém a função main que inicia o jogo.
-**Deck.java:** Implementa a lógica das cartas, embaralhamento, Getter e Setter do Baralho.
-**Card.java:** Define a estrutura de dados para uma carta individual.
-**Player.java:** Define a estrutura de dados e as ações de um jogador.
-**Dealer.java:** Estende a classe Player e implementa a lógica do dealer baseada em condições.
-**Game.java:** Gerencia os dados do jogo, incluindo a lista de jogadores, desenvolvida no padrão de projeto Singleton garantindo assim somente uma instância durante a execução do código.
+- **Application.java:** Contém a função main que inicia o jogo.
+- **Deck.java:** Implementa a lógica das cartas, embaralhamento, Getter e Setter do Baralho.
+- **Card.java:** Define a estrutura de dados para uma carta individual.
+- **Player.java:** Define a estrutura de dados e as ações de um jogador.
+- **Dealer.java:** Estende a classe Player e implementa a lógica do dealer baseada em condições.
+- **Game.java:** Gerencia os dados do jogo, incluindo a lista de jogadores, desenvolvida no padrão de projeto Singleton garantindo assim somente uma instância durante a execução do código.
 
 ## Customizações futuras
 - Desenvolver uma interface gráfica para tornar a experiência mais envolvente com JavaFX.
