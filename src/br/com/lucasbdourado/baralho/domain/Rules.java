@@ -1,44 +1,20 @@
 package br.com.lucasbdourado.baralho.domain;
 
-import java.util.List;
-
 public class Rules {
-
-    private int winCondition = 21;
-
     public Rules(){}
 
-    public boolean checkCards(Jogador jogador){
-        int result = 0;
+    public boolean checkCards(Player player, boolean displayMessage){
         boolean canPlay = true;
+        int cardsValue = player.getCardsValue();
 
-        for (Card card : jogador.getCards()) {
-            result = result + card.getValue();
-        }
-
-        System.out.print(result);
-
-        int winner = checkWinCondition(result);
-
-        if(winner > 0){
+        if (cardsValue == 21) {
             canPlay = false;
+            if(displayMessage) System.out.println("Blackjack!");
+        } else if (cardsValue > 21) {
+            canPlay = false;
+            if(displayMessage) System.out.println("Estourou!");
         }
 
         return canPlay;
     }
-
-    public int checkWinCondition(int result){
-        int winner = 0;
-
-        if(result == 21){
-            winner = 1;
-            System.out.println("\nDealer: Blackjack!!!");
-        } else if (result > 21) {
-            winner = 2;
-            System.out.println("\nDealer: Você estourou!");
-        }
-
-        return winner;
-    }
-
 }

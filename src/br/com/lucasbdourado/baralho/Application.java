@@ -2,7 +2,6 @@ package br.com.lucasbdourado.baralho;
 
 import br.com.lucasbdourado.baralho.domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +14,7 @@ public class Application {
 
         while (!makedChoice) {
             System.out.println("---------------------------");
-            System.out.println("1 - Inciar jogo");
+            System.out.println("1 - Inciar Blackjack");
 
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
@@ -30,6 +29,8 @@ public class Application {
     }
 
     public static void playerSelection(){
+        Game game = Game.getGame();
+
         System.out.println("---------------------------");
         System.out.println("Informe quantos jogadores irão jogar a partida de Blackjack");
 
@@ -37,8 +38,6 @@ public class Application {
         int choice = scanner.nextInt();
 
         if (choice <= 4) {
-            List<Jogador> jogadores = new ArrayList<>();
-
             for(int i=1; i<=choice; i++){
                 Scanner scanner1 = new Scanner(System.in);
 
@@ -48,15 +47,17 @@ public class Application {
 
 
                 if(name.length() > 2){
-                    jogadores.add(new Jogador(name));
+                    Game.getGame();
+                    game.addPlayer(new Player(name));
                 }else{
                     System.out.println("Digite o nome corretamente");
                     i--;
                 }
             }
 
-            if (jogadores.size() == choice){
-                startGame(jogadores);
+            if (game.getPlayers().size() == choice){
+                List<Player> jogadores = game.getPlayers();
+                startGame(game.getPlayers());
             }
         } else {
             System.out.println("Não é possivel iniciar a partida com essa quantidade de jogadores!");
@@ -64,9 +65,9 @@ public class Application {
         }
     }
 
-    public static void startGame(List<Jogador> jogadores){
+    public static void startGame(List<Player> players){
 
-        System.out.println("\n---------------------------");
+        System.out.println("---------------------------");
         System.out.println("-------- BlackJack --------");
         System.out.println("---------------------------");
 
@@ -77,56 +78,42 @@ public class Application {
 
         Dealer dealer = new Dealer("Dealer", deck);
 
-        for (int i=0; i<2; i++) {
-            for (Jogador jogador : jogadores) {
-                dealer.giveCard(jogador);
-            }
-            dealer.addCard();
+        dealer.giveCardsForAllPlayers(players);
+
+        for (Player player : players) {
+            player.showCards();
+            rules.checkCards(player, true);
+            System.out.println("---------------------------");
         }
 
-        for (Jogador jogador : jogadores) {
-            System.out.print(jogador.getName() + ": ");
-            for (Card card: jogador.getCards()) {
-                System.out.print(card.getNumber() + card.getSuit() + " ");
-            }
-            rules.checkCards(jogador);
-            System.out.println("\n---------------------------");
+        dealer.showCards(true);
 
-        }
-        System.out.print(dealer.getName() + ": " + dealer.getCards().get(0).getNumber() + dealer.getCards().get(0).getSuit() + " ");
-
-        System.out.println("\n---------------------------");
-        int turnos = jogadores.size();
-
-        for(int i=0; i<turnos; i++){
-            Jogador jogador = jogadores.get(i);
+        for(int i=0; i<players.size(); i++){
+            Player player = players.get(i);
+            boolean canPlay = rules.checkCards(player, false);
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("\n---------------------------");
-            System.out.println("Vez do " + jogador.getName());
-            System.out.println("1 - Pedir mais uma carta");
-            System.out.println("2 - Parar / Desistir");
+            while(canPlay) {
+                System.out.println("---------------------------");
+                System.out.println("Vez do " + player.getName());
+                System.out.println("1 - Pedir mais uma carta");
+                System.out.println("2 - Parar / Desistir");
 
-            int choice = scanner.nextInt();
-            boolean canPlay = true;
+                int choice = scanner.nextInt();
 
-            if(choice == 1){
-                dealer.giveCard(jogador);
-                for (Card card: jogador.getCards()) {
-                    System.out.print(card.getNumber() + card.getSuit() + " ");
+                if (choice == 1) {
+                    dealer.giveCard(player);
+                    player.showCards();
+                    canPlay = rules.checkCards(player, true);
+                } else if (choice == 2) {
+                    System.out.println("Você parou");
+                    canPlay = false;
+                } else {
+                    System.out.println("Opção errada!");
                 }
-                canPlay = rules.checkCards(jogador);
-                System.out.println("\n");
-            }else if(choice == 2){
-                System.out.println("Você parou");
-                canPlay = false;
-            }else{
-                System.out.println("Opção errada!");
             }
-
-            if(canPlay){i--;}
         }
-
-        dealer.checkPlay(jogadores);
+        System.out.println("---------------------------");
+        dealer.checkPlay();
     }
 }
