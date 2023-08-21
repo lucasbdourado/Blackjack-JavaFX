@@ -22,3 +22,6 @@ O código-fonte do jogo está organizado da seguinte forma:
 - [ ] Criar e hospedar preview do projeto.
 
 Aviso: Este é um projeto de aprendizado e entretenimento, não é destinado ao uso comercial ou de cassino real.
+
+## Preview do Projeto
+<center><img src="https://github.com/lucasbdourado/Baralho-Java/assets/44330434/c72ef582-5ff3-4c40-9f04-4bbc9c00dd7b"></center>
