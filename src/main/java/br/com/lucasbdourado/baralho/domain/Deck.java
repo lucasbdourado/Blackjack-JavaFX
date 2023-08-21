@@ -5,8 +5,6 @@ package br.com.lucasbdourado.baralho.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Deck {
     private List<Card> cards = new ArrayList<>();

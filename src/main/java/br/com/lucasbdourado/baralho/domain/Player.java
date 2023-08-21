@@ -1,5 +1,10 @@
 package br.com.lucasbdourado.baralho.domain;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +12,7 @@ public class Player {
 
     private String name;
     private List<Card> cards = new ArrayList<>();
+    private Hands playerHand;
 
     public Player(String name){
         this.name = name;
@@ -20,6 +26,14 @@ public class Player {
         return cards;
     }
 
+    public Hands getPlayerHand() {
+        return playerHand;
+    }
+
+    public void setPlayerHand(Hands playerHand) {
+        this.playerHand = playerHand;
+    }
+
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }
@@ -29,15 +43,11 @@ public class Player {
     }
 
     public void showCards(){
-        int result = 0;
-
-        System.out.print(name + ": ");
         for (Card card: cards) {
-            System.out.print(card.getNumber() + card.getSuit() + " ");
-            result = result + card.getValue();
+            card.show(playerHand.getPlayerHands());
         }
 
-        System.out.println(result);
+        playerHand.mountPlayer(name, getCardsValue());
     }
 
     public Integer getCardsValue(){

@@ -1,11 +1,16 @@
 package br.com.lucasbdourado.baralho.domain;
 
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dealer extends Player {
     private Deck deck;
     private List<Card> cards = new ArrayList<>();
+
+    private Hands hands;
 
     private Integer index = 0;
 
@@ -18,6 +23,10 @@ public class Dealer extends Player {
         Card card = deck.getCard();
 
         player.addCard(card);
+    }
+
+    public void setPlayerHand(Hands hands) {
+        this.hands = hands;
     }
 
     public void addCard(){
@@ -34,19 +43,17 @@ public class Dealer extends Player {
     public void showCards(boolean showOnlyFirstCard) {
         int result = 0;
 
-
         if(showOnlyFirstCard){
-            System.out.println(getName() + ": " + cards.get(0).getNumber() + cards.get(0).getSuit());
+            cards.get(0).show(hands.getPlayerHands());
+            cards.get(1).hide(hands.getPlayerHands());
             return;
         }
 
-        System.out.print("Dealer: ");
         for (Card card: cards) {
-            System.out.print(card.getNumber() + card.getSuit() + " ");
-            result = result + card.getValue();
+            card.show(hands.getPlayerHands());
         }
 
-        System.out.println(result);
+        hands.mountPlayer(this.getName(), getCardsValue());
     }
 
     public Integer getCardsValue() {
@@ -61,10 +68,10 @@ public class Dealer extends Player {
 
     public void checkPlay(){
         Game game = Game.getGame();
-        List<Player> players = game.getPlayers();
+        List<Player> players = new ArrayList<>();
         int bestHand = 0;
 
-        this.showCards(false);
+        //this.showCards(false);
 
         for (Player player : players) {
             int playerHands = player.getCardsValue();
@@ -82,7 +89,7 @@ public class Dealer extends Player {
     public void makePlay(Integer bestHand, List<Player> players){
         int dealerHand = this.getCardsValue();
 
-        this.showCards(false);
+        //this.showCards(false);
 
         boolean needBuy = false;
         for (Player player : players) {
@@ -116,14 +123,14 @@ public class Dealer extends Player {
             int playerHand = player.getCardsValue();
 
 
-            player.showCards();
+            //player.showCards();
 
             if(playerHand > dealerHands && playerHand <= 21 || dealerHands > 21 && playerHand <= 21){
                 winners.add(player);
             }
         }
 
-        this.showCards(false);
+        //this.showCards(false);
 
         if(winners.size() > 0){
             System.out.println("O(s) vencedor(es) são: ");
@@ -144,5 +151,23 @@ public class Dealer extends Player {
             }
             this.addCard();
         }
+    }
+
+    public void setTable() {
+        Game game = Game.getGame();
+
+        HBox table = new HBox(5);
+
+        table.setAlignment(Pos.CENTER);
+
+        table.setStyle("-fx-background-color: #009933");
+
+        Hands hands = new Hands();
+
+        hands.setPlayerHands(table);
+
+        setPlayerHand(hands);
+
+        game.getScreen().setCenter(hands.getTable());
     }
 }

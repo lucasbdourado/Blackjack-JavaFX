@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         mainMenu();
     }
     public static void mainMenu(){
@@ -115,5 +115,5 @@ public class Application {
         }
         System.out.println("---------------------------");
         dealer.checkPlay();
-    }
+    }*/
 }
