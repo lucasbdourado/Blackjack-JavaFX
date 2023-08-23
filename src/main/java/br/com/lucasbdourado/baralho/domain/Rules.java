@@ -1,18 +1,26 @@
+/*
+    @Author: Lucas Barbosa Dourado - lucasbdourado
+*/
+
 package br.com.lucasbdourado.baralho.domain;
 
 public class Rules {
     public Rules(){}
 
-    public boolean checkCards(Player player, boolean displayMessage){
+    public boolean checkCards(Player player){
         boolean canPlay = true;
         int cardsValue = player.getCardsValue();
 
+        System.out.println(player.getName() + ": " + cardsValue);
+
         if (cardsValue == 21) {
             canPlay = false;
-            if(displayMessage) System.out.println("Blackjack!");
+            player.getPlayerHand().disableButtons();
+            Game.getGame().changeTurn();
         } else if (cardsValue > 21) {
             canPlay = false;
-            if(displayMessage) System.out.println("Estourou!");
+            player.getPlayerHand().disableButtons();
+            Game.getGame().changeTurn();
         }
 
         return canPlay;

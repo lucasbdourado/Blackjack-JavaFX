@@ -5,24 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="941a9ec0-376a-45ad-bb99-a7c2ca999242" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/controller/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Hands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/views/GameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Baralho.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/domain/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/domain/Dealer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Dealer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/domain/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/domain/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/domain/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/lucasbdourado/baralho/domain/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Rules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/Blackjack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/Blackjack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Dealer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Dealer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Hands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Hands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Rules.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +27,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -78,6 +76,21 @@
       <recent name="C:\Users\lucas\Documents\Projetos\Baralho\src\main\java\br\com\lucasbdourado\baralho" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="BaralhoFX" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="BaralhoFX" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -93,11 +106,24 @@
       <workItem from="1692468809490" duration="773000" />
       <workItem from="1692490417541" duration="1075000" />
       <workItem from="1692643822167" duration="7662000" />
+      <workItem from="1692732973925" duration="8000" />
+      <workItem from="1692733002693" duration="3885000" />
+      <workItem from="1692816696906" duration="11107000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/lucasbdourado/baralho/domain/Card.java</url>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

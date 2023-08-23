@@ -1,9 +1,8 @@
-package br.com.lucasbdourado.baralho.domain;
+/*
+    @Author: Lucas Barbosa Dourado - lucasbdourado
+*/
 
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+package br.com.lucasbdourado.baralho.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +42,8 @@ public class Player {
     }
 
     public void showCards(){
+        playerHand.getPlayerHands().getChildren().clear();
+
         for (Card card: cards) {
             card.show(playerHand.getPlayerHands());
         }
@@ -62,5 +63,9 @@ public class Player {
 
     public void removeAllCards() {
         cards.clear();
+    }
+
+    public void setPlay() {
+        playerHand.displayButtons();
     }
 }

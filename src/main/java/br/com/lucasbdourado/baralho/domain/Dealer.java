@@ -1,5 +1,10 @@
+/*
+    @Author: Lucas Barbosa Dourado - lucasbdourado
+*/
+
 package br.com.lucasbdourado.baralho.domain;
 
+import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
@@ -11,8 +16,6 @@ public class Dealer extends Player {
     private List<Card> cards = new ArrayList<>();
 
     private Hands hands;
-
-    private Integer index = 0;
 
     public Dealer(String name, Deck deck){
         super(name);
@@ -41,7 +44,7 @@ public class Dealer extends Player {
 
 
     public void showCards(boolean showOnlyFirstCard) {
-        int result = 0;
+        hands.getPlayerHands().getChildren().clear();
 
         if(showOnlyFirstCard){
             cards.get(0).show(hands.getPlayerHands());
@@ -68,10 +71,8 @@ public class Dealer extends Player {
 
     public void checkPlay(){
         Game game = Game.getGame();
-        List<Player> players = new ArrayList<>();
+        List<Player> players = game.getPlayers();
         int bestHand = 0;
-
-        //this.showCards(false);
 
         for (Player player : players) {
             int playerHands = player.getCardsValue();
@@ -89,7 +90,7 @@ public class Dealer extends Player {
     public void makePlay(Integer bestHand, List<Player> players){
         int dealerHand = this.getCardsValue();
 
-        //this.showCards(false);
+        this.showCards(false);
 
         boolean needBuy = false;
         for (Player player : players) {
@@ -106,7 +107,7 @@ public class Dealer extends Player {
     public void endPlay(boolean needBuy, Integer bestHand, List<Player> players){
         if(needBuy){
             this.addCard();
-            this.makePlay(bestHand, players);
+            delay(2000, () -> this.makePlay(bestHand, players));
         }else{
             this.endGame(players);
         }
@@ -115,24 +116,18 @@ public class Dealer extends Player {
     public void endGame(List<Player> players){
         Game game = Game.getGame();
         List<Player> winners = new ArrayList<>();
-        Rules rules = new Rules();
 
         int dealerHands = this.getCardsValue();
 
         for (Player player : players) {
             int playerHand = player.getCardsValue();
 
-
-            //player.showCards();
-
             if(playerHand > dealerHands && playerHand <= 21 || dealerHands > 21 && playerHand <= 21){
                 winners.add(player);
             }
         }
 
-        //this.showCards(false);
-
-        if(winners.size() > 0){
+        if(!winners.isEmpty()){
             System.out.println("O(s) vencedor(es) são: ");
             for (Player player : winners) {
                 System.out.println(player.getName());
@@ -141,7 +136,6 @@ public class Dealer extends Player {
             System.out.println("O dealer ganhou a partida!");
         }
 
-        game.gameOver();
     }
 
     public void giveCardsForAllPlayers(List<Player> players) {
@@ -162,12 +156,25 @@ public class Dealer extends Player {
 
         table.setStyle("-fx-background-color: #009933");
 
-        Hands hands = new Hands();
+        Hands hands = new Hands(this);
 
         hands.setPlayerHands(table);
 
         setPlayerHand(hands);
 
         game.getScreen().setCenter(hands.getTable());
+    }
+
+    public static void delay(long millis, Runnable continuation) {
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(millis); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> continuation.run());
+        new Thread(sleeper).start();
     }
 }

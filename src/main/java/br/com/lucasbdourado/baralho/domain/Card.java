@@ -33,7 +33,7 @@ public class Card {
     public void setValue(Integer value) { this.value = value; }
 
     public void show(Pane position){
-        Rectangle card = new Rectangle(70, 100, Color.WHITE);
+        Rectangle card = new Rectangle(45, 70, Color.WHITE);
 
         StackPane stackPane = new StackPane();
 
@@ -49,7 +49,7 @@ public class Card {
     }
 
     public void hide(Pane position){
-        Rectangle card = new Rectangle(70, 100, Color.rgb(255, 135, 135, 1));
+        Rectangle card = new Rectangle(45, 70, Color.rgb(255, 135, 135, 1));
 
         position.getChildren().add(card);
     }

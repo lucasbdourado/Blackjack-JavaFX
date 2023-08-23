@@ -1,9 +1,13 @@
+/*
+    @Author: Lucas Barbosa Dourado - lucasbdourado
+*/
+
 package br.com.lucasbdourado.baralho.domain;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.util.*;
@@ -13,14 +17,16 @@ public class Game {
     private static Game game;
     private List<Player> players = new ArrayList<>();
 
+    private Dealer dealer;
+
+    @FXML
     private BorderPane screen;
 
+    private int turn = 0;
+    private Rules rules;
+
     private Game(){
-
-    }
-
-    private void GameFactory(Game game){
-
+        this.rules = new Rules();
     }
 
     public List<Player> getPlayers() {
@@ -31,8 +37,8 @@ public class Game {
         return screen;
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
+    public Dealer getDealer() {
+        return dealer;
     }
 
     public static Game getGame() {
@@ -45,34 +51,6 @@ public class Game {
 
     private static Game initGame() {
         return new Game();
-    }
-
-    public void gameOver(){
-        boolean makedchoice = false;
-
-        while (!makedchoice){
-            System.out.print("\n------------------------------\n");
-            System.out.println("Escolha uma opção. \n1 - Jogar novamente com outros jogadores \n2 - Jogar novamente com os mesmos jogadores \n3 - Sair do jogo");
-            System.out.println("------------------------------");
-
-            Scanner scanner = new Scanner(System.in);
-            int choice =  scanner.nextInt();
-
-            if(choice == 1){
-                makedchoice = true;
-                game.close();
-                //Application.playerSelection();
-            } else if (choice == 2) {
-                makedchoice = true;
-                for (Player player : getPlayers()) {
-                    player.removeAllCards();
-                }
-
-                //Application.startGame(players);
-            } else if (choice == 3) {
-                makedchoice = true;
-            }
-        }
     }
 
     private void close() {
@@ -90,7 +68,7 @@ public class Game {
                 playerHands.setAlignment(Pos.CENTER);
                 playerHands.setStyle("-fx-background-color: #009933");
 
-                Hands hands = new Hands();
+                Hands hands = new Hands(player);
 
                 hands.setPlayerHands(playerHands);
 
@@ -103,7 +81,7 @@ public class Game {
                 playerHands.setAlignment(Pos.CENTER);
                 playerHands.setStyle("-fx-background-color: #009933");
 
-                Hands hands = new Hands();
+                Hands hands = new Hands(player);
 
                 hands.setPlayerHands(playerHands);
 
@@ -118,7 +96,7 @@ public class Game {
                 playerHands.setStyle("-fx-background-color: #009933");
                 screen.setTop(playerHands);
 
-                Hands hands = new Hands();
+                Hands hands = new Hands(player);
 
                 hands.setPlayerHands(playerHands);
 
@@ -131,7 +109,7 @@ public class Game {
                 playerHands.setAlignment(Pos.CENTER);
                 playerHands.setStyle("-fx-background-color: #009933");
 
-                Hands hands = new Hands();
+                Hands hands = new Hands(player);
 
                 hands.setPlayerHands(playerHands);
 
@@ -145,5 +123,28 @@ public class Game {
 
     public void setScreen(BorderPane screen) {
         this.screen = screen;
+    }
+
+    public void setDealer(Dealer dealer) {
+        this.dealer = dealer;
+    }
+
+    public void playersPlays() {
+        if(turn >= players.size()){
+            dealer.checkPlay();
+            return;
+        }
+
+        Player player = players.get(turn);
+        boolean canPlay = rules.checkCards(player);
+
+        if(canPlay){
+            player.setPlay();
+        }
+    }
+
+    public void changeTurn() {
+        turn++;
+        playersPlays();
     }
 }
